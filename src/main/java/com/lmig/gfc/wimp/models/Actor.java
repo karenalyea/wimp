@@ -28,6 +28,16 @@ public class Actor {
 	
 	@Column(nullable=true)
 	private Date birthDate;
+	
+	public Actor() {}
+	
+	public Actor(String firstName, String lastName, Long activeSinceYear, Date birthDate) {
+		this.firstName = firstName;
+		this.lastName = lastName;
+		this.activeSinceYear = activeSinceYear;
+		this.birthDate = birthDate;
+	
+	}
 	public Long getId() {
 		return id;
 	}

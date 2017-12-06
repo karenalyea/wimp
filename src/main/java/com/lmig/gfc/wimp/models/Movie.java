@@ -26,6 +26,14 @@ public class Movie {
 	
 	@Column(nullable=false, length=500)
 	private String distributor;
+	 
+	public Movie() {}
+	public Movie(String title, Date releaseDate, Long budget, String distributor) {
+		this.title = title;
+		this.releaseDate = releaseDate;
+		this.budget = budget;
+		this.distributor = distributor;
+	}
 	
 	public Long getId() {
 		return id;
