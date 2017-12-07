@@ -7,6 +7,7 @@ import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -36,9 +37,15 @@ public class ActorsApiController {
 	}
 	
 	@GetMapping({"id"})
-	public Actor update(@RequestBody Actor actor, @PathVariable Long id) {
+	public Actor getOne(@PathVariable Long id) {
 		return actorRepository.findOne(id);
 	}
+	
+	@PutMapping({"id"})
+	public Actor update(@RequestBody Actor movie, @PathVariable Long id) {
+		return actorRepository.save(movie);
+	}
+	
 	
 	@DeleteMapping({"id"})
 	public Actor delete(@PathVariable Long id) {
