@@ -1,20 +1,32 @@
 package com.lmig.gfc.wimp.models;
 
 import java.util.Date;
+import java.util.List;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToMany;
+import javax.persistence.SequenceGenerator;
+import javax.persistence.Table;
+
 
 @Entity
+@Table(name="movie")
 public class Movie {
 	
-	@Id
-	@GeneratedValue(strategy = GenerationType.AUTO)
-	private Long id;
 	
+	
+	@ManyToMany(mappedBy = "movies") // anything added to this collection and saved DOES NOT go to the database
+	private List<Actor> actors;
+	
+	@Id
+	@GeneratedValue(generator = "movie_id_seq", strategy = GenerationType.AUTO)
+	@SequenceGenerator(name = "movie_id_seq", sequenceName = "movie_id_seq")
+	private Long id;
+		
 	@Column(length=300, nullable=false)
 	private String title;
 	
@@ -65,6 +77,12 @@ public class Movie {
 	public void setDistributor(String distributor) {
 		this.distributor = distributor;
 	}
+	public List<Actor> getActors() {
+		return actors;
+	}
 	
+	public void setActors(List<Actor> actors) {
+		this.actors = actors;
+	}
 
 }

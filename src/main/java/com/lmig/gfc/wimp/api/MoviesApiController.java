@@ -34,17 +34,17 @@ public class MoviesApiController {
 		return movieRepository.save(movie);
 	}
 	
-	@GetMapping({"id"})
+	@GetMapping("{id}")
 	public Movie getOne(@PathVariable Long id) {
 		return movieRepository.findOne(id);
 	}
 	
-	@PutMapping({"id"})
+	@PutMapping("{id}")
 	public Movie update(@RequestBody Movie movie, @PathVariable Long id) {
 		return movieRepository.save(movie);
 	}
 	
-	@DeleteMapping({"id"})
+	@DeleteMapping("{id}")
 	public Movie delete(@PathVariable Long id) {
 		Movie movie = movieRepository.findOne(id);
 		movieRepository.delete(id);
