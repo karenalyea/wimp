@@ -1,6 +1,8 @@
 package com.lmig.gfc.wimp.config;
 
 
+import java.util.ArrayList;
+
 import org.springframework.context.annotation.Configuration;
 
 import com.lmig.gfc.wimp.models.Actor;
@@ -17,10 +19,15 @@ public class SeedData {
 		Actor joe = actorRepository.save(new Actor("Joe", "Star", 2015L, null));
 		movieRepository.save(new Movie("Gone with the Wind", null, null, "MGM"));
 		Actor betty = actorRepository.save(new Actor("Betty", "Boop", 1911L, null));
-		movieRepository.save(new Movie("Big", null, null, "Paramont"));
+		Movie movie = movieRepository.save(new Movie("Big", null, null, "Paramont"));
 		movieRepository.save(new Movie("Four Rooms", null, 4000000L, "Mirimax Films"));
 		actorRepository.save(new Actor("Tim", "Roth", 1982L, null));
 		awardRepository.save(new Award("Best Actor", "BAFTA", 1982, joe));
 		awardRepository.save(new Award("Worst Movie", "Raspberries", 2017, betty));
+		
+		ArrayList<Movie> movies = new ArrayList<Movie>();
+		movies.add(movie);
+		betty.setMovies(movies);
+		actorRepository.save(betty);
 	}
 }
